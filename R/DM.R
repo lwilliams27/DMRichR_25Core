@@ -66,7 +66,8 @@ DM.R <- function(genome = c("hg38", "hg19", "mm10", "mm9", "rheMac10",
                  cores = 20,
                  GOfuncR = TRUE,
                  sexCheck = FALSE,
-                 EnsDb = FALSE){
+                 EnsDb = FALSE,
+                chrsPerChunk = 25){
   
   
   # Check dmrseq version 
@@ -126,6 +127,7 @@ DM.R <- function(genome = c("hg38", "hg19", "mm10", "mm9", "rheMac10",
   print(glue::glue("sexCheck = {sexCheck}"))
   print(glue::glue("EnsDb = {EnsDb}"))
   print(glue::glue("GOfuncR = {GOfuncR}"))
+  print(glue::glue("chrsPerChunk = {chrsPerChunk}"))
   
   # Setup annotation databases ----------------------------------------------
   
@@ -199,7 +201,8 @@ DM.R <- function(genome = c("hg38", "hg19", "mm10", "mm9", "rheMac10",
                              maxGapSmooth = 1e6,
                              maxGap = 5e3,
                              minNumRegion = (minCpGs*2),
-                             BPPARAM = BiocParallel::MulticoreParam(workers = cores)
+                             BPPARAM = BiocParallel::MulticoreParam(workers = cores),
+                             chrsPerChunk = chrsPerChunk
     )
     
     print(glue::glue("Selecting significant blocks..."))
@@ -292,7 +295,8 @@ DM.R <- function(genome = c("hg38", "hg19", "mm10", "mm9", "rheMac10",
                             testCovariate = testCovariate,
                             adjustCovariate = adjustCovariate,
                             matchCovariate = matchCovariate,
-                            BPPARAM = BiocParallel::MulticoreParam(workers = cores)
+                            BPPARAM = BiocParallel::MulticoreParam(workers = cores),
+                            chrsPerChunk = chrsPerChunk
   )
   
   print(glue::glue("Selecting significant DMRs..."))
