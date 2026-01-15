@@ -67,7 +67,7 @@ DM.R <- function(genome = c("hg38", "hg19", "mm10", "mm9", "rheMac10",
                  GOfuncR = TRUE,
                  sexCheck = FALSE,
                  EnsDb = FALSE,
-                chrsPerChunk = 25){
+                 chrsPerChunk = 25){
   
   
   # Check dmrseq version 
