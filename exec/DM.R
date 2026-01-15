@@ -56,7 +56,9 @@ option_list <- list(
   optparse::make_option(c("-d", "--EnsDb"), type = "logical", default = FALSE,
                         help = "Logical to select Ensembl transcript annotation database [default = %default]"),
   optparse::make_option(c("-f", "--GOfuncR"), type = "logical", default = TRUE,
-                        help = "Logical to run GOfuncR GO analysis [default = %default]")
+                        help = "Logical to run GOfuncR GO analysis [default = %default]"),
+  optparse::make_option(c("-h", "--chrsPerChunk"), type = "integer", default = 1,
+                        help = "Choose how many chromosomes to process per chunk in region and block calls [default = %default]")
 )
 opt <- optparse::parse_args(optparse::OptionParser(option_list = option_list))
 
@@ -82,5 +84,6 @@ DMRichR::DM.R(genome = opt$genome,
               cores = opt$cores,
               GOfuncR = opt$GOfuncR,
               sexCheck = opt$sexCheck,
-              EnsDb = opt$EnsDb)
+              EnsDb = opt$EnsDb,
+              chrsPerChunk = opt$chrsPerChunk)
     
