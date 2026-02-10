@@ -202,7 +202,7 @@ DM.R <- function(genome = c("hg38", "hg19", "mm10", "mm9", "rheMac10",
                              maxGap = 5e3,
                              minNumRegion = (minCpGs*2),
                              BPPARAM = BiocParallel::MulticoreParam(workers = cores),
-                             chrsPerChunk = chrsPerChunk
+                             chrsPerChunk = 25
     )
     
     print(glue::glue("Selecting significant blocks..."))
@@ -296,7 +296,7 @@ DM.R <- function(genome = c("hg38", "hg19", "mm10", "mm9", "rheMac10",
                             adjustCovariate = adjustCovariate,
                             matchCovariate = matchCovariate,
                             BPPARAM = BiocParallel::MulticoreParam(workers = cores),
-                            chrsPerChunk = chrsPerChunk
+                            chrsPerChunk = 25
   )
   
   print(glue::glue("Selecting significant DMRs..."))
